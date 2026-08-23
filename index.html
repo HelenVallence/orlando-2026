@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0f766e" />
+  <meta name="description" content="Private Orlando 2026 family trip planner" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Orlando 2026</title>
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">FAMILY TRIP</p>
+      <h1>Orlando 2026 🌴</h1>
+      <p>24 October – 5 November 2026</p>
+    </div>
+    <div class="countdown" id="countdown">Loading countdown…</div>
+  </header>
+
+  <nav class="tabs" aria-label="Main sections">
+    <button class="tab active" data-target="home">Today</button>
+    <button class="tab" data-target="trip">Trip</button>
+    <button class="tab" data-target="tickets">Tickets</button>
+    <button class="tab" data-target="checklists">Checklists</button>
+    <button class="tab" data-target="food">Food</button>
+    <button class="tab" data-target="notes">Notes</button>
+  </nav>
+
+  <main>
+    <section id="home" class="panel active">
+      <div class="card feature">
+        <span class="tag">TODAY</span>
+        <h2 id="todayTitle">Your Orlando trip</h2>
+        <p id="todayPlan">Your day-by-day plan will appear here during the trip.</p>
+        <div class="actions">
+          <a class="btn" href="#trip" data-jump="trip">View itinerary</a>
+          <a class="btn secondary" href="https://www.google.com/maps" target="_blank" rel="noopener">Open Maps</a>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Quick links</h3>
+          <div class="stack">
+            <a class="linkbtn" href="https://disneyworld.disney.go.com/" target="_blank" rel="noopener">🏰 Disney World</a>
+            <a class="linkbtn" href="https://www.universalorlando.com/" target="_blank" rel="noopener">🎢 Universal Orlando</a>
+            <a class="linkbtn" href="https://www.kennedyspacecenter.com/" target="_blank" rel="noopener">🚀 Kennedy Space Center</a>
+            <a class="linkbtn" href="https://www.google.com/maps/search/?api=1&query=Coco+Key+Hotel+Orlando" target="_blank" rel="noopener">🏨 Coco Key Hotel</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Where did we park? 🚗</h3>
+          <input id="parkingNote" class="input" placeholder="e.g. Simba 42" />
+          <button class="btn small" id="saveParking">Save</button>
+          <p class="saved" id="parkingSaved"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="trip" class="panel">
+      <h2>Day-by-day plan 📅</h2>
+      <p class="muted">Tap a day to add your own notes or confirmations.</p>
+      <div id="itinerary"></div>
+    </section>
+
+    <section id="tickets" class="panel">
+      <h2>Tickets & bookings 🎟️</h2>
+      <div class="card warning">
+        <strong>Best practice:</strong> keep Disney/Universal dynamic tickets in their official apps. Use this page for shortcuts, booking references and local file notes.
+      </div>
+
+      <div id="ticketCards" class="grid two"></div>
+
+      <div class="card">
+        <h3>Local ticket/document notes</h3>
+        <p class="muted">This version stores text only on this device. For ticket PDFs/images, keep them in Files/Google Wallet or the official app and note where they are here.</p>
+        <textarea id="ticketNotes" rows="8" class="input" placeholder="Example: KSC PDF saved in Downloads/Kennedy.pdf"></textarea>
+        <button class="btn small" id="saveTicketNotes">Save notes</button>
+        <p class="saved" id="ticketSaved"></p>
+      </div>
+    </section>
+
+    <section id="checklists" class="panel">
+      <h2>Checklists ✅</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Pre-travel checklist ✈️</h3>
+          <div id="preTravelChecklist"></div>
+        </div>
+        <div class="card">
+          <h3>Theme park bag 🎒</h3>
+          <div id="parkBagChecklist"></div>
+        </div>
+      </div>
+      <button class="btn danger small" id="resetChecks">Reset all checklists</button>
+    </section>
+
+    <section id="food" class="panel">
+      <h2>Food ideas 🍽️</h2>
+      <div id="foodCards" class="grid two"></div>
+    </section>
+
+    <section id="notes" class="panel">
+      <h2>Trip notes 📝</h2>
+      <div class="card">
+        <textarea id="generalNotes" rows="16" class="input" placeholder="Add anything you want to remember…"></textarea>
+        <button class="btn small" id="saveNotes">Save notes</button>
+        <p class="saved" id="notesSaved"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Orlando 2026 • Works offline after first load</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
