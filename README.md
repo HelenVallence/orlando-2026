@@ -1,30 +1,22 @@
-# Orlando 2026 PWA
+# Orlando 2026 PWA — Version 2
 
-A small installable Progressive Web App for a family Orlando trip, 24 October – 5 November 2026.
+Upload these files over the matching files in your existing GitHub repository.
 
-## Files
-- index.html
-- style.css
-- app.js
-- manifest.json
-- service-worker.js
-- icon-192.png
-- icon-512.png
+## V2 improvements
+- Fixed bottom navigation
+- More menu for Spending / NASA / Notes
+- Improved Today screen
+- Day-specific hints
+- Expanded ticket/booking area
+- Restaurant reservation notes
+- Pre-travel, park-bag, Disney, Universal and NASA checklists
+- Spending tracker
+- Dedicated NASA day page
+- Weather shortcut
+- Local-storage persistence
+- Offline support with updated service-worker cache
 
-## Features
-- Day-by-day itinerary
-- Countdown
-- Ticket/official-site shortcuts
-- Pre-travel checklist
-- Theme park bag checklist
-- Restaurant ideas
-- Per-day notes
-- General notes
-- Parking-location note
-- Offline support after the first load
-- Device-local storage for notes/checklist state
+## Updating GitHub
+Upload all files in this folder to the root of your existing `orlando-2026` repository and choose to replace/overwrite files when prompted. Commit the changes. GitHub Pages will redeploy automatically.
 
-## Host it free
-Recommended easy options: GitHub Pages or Cloudflare Pages.
-
-Important: do not upload passport scans, insurance documents, or static screenshots of dynamic theme-park tickets into the public site files.
+Note: existing locally-saved notes should remain because their storage keys are retained.
