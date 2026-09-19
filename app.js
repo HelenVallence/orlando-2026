@@ -1,27 +1,32 @@
 
 const itinerary = [
-  {date:"2026-10-24", label:"Sat 24 Oct", title:"Arrival + Coco Key / I-Drive", plan:"Hotel check-in, food nearby, early night if needed.", extras:"No park ticket needed."},
-  {date:"2026-10-25", label:"Sun 25 Oct", title:"Pool + I-Drive / Disney Springs", plan:"Low-pressure day. Pool, groceries and an easy dinner.", extras:"Good day for Disney Springs."},
-  {date:"2026-10-26", label:"Mon 26 Oct", title:"Easy day / outlets / mini golf", plan:"Shopping, mini golf, pool or ICON Park.", extras:"Save energy for the parks."},
-  {date:"2026-10-27", label:"Tue 27 Oct", title:"Animal Kingdom", plan:"Early start. Safari first, shows and Pandora.", extras:"Food idea: Tusker House late breakfast."},
-  {date:"2026-10-28", label:"Wed 28 Oct", title:"Hollywood Studios", plan:"Toy Story, Mickey & Minnie, Star Wars.", extras:"Food idea: Sci-Fi Dine-In."},
-  {date:"2026-10-29", label:"Thu 29 Oct", title:"Magic Kingdom Halloween Party 🎃", plan:"Aim to arrive before 4pm entry. Save energy for the later parade.", extras:"Party runs late — keep the morning easy."},
-  {date:"2026-10-30", label:"Fri 30 Oct", title:"Recovery day", plan:"Sleep in, pool, easy food.", extras:"No rope drop today!"},
-  {date:"2026-10-31", label:"Sat 31 Oct", title:"Halloween / flexible day", plan:"Pool, I-Drive, Disney Springs or local Halloween activity.", extras:"Keep this flexible."},
-  {date:"2026-11-01", label:"Sun 1 Nov", title:"Universal Studios + Islands of Adventure", plan:"Park-to-Park if Hogwarts Express matters.", extras:"Focus on family-friendly rides and themed areas."},
-  {date:"2026-11-02", label:"Mon 2 Nov", title:"Kennedy Space Center 🚀", plan:"Full day. Aim for opening.", extras:"Prioritise Atlantis, bus tour and Saturn V."},
-  {date:"2026-11-03", label:"Tue 3 Nov", title:"Epic Universe", plan:"Full day. Start with whichever matters most.", extras:"Nintendo or How to Train Your Dragon first."},
-  {date:"2026-11-04", label:"Wed 4 Nov", title:"EPCOT", plan:"Ratatouille, Frozen, The Seas and World Showcase.", extras:"Space 220 optional."},
-  {date:"2026-11-05", label:"Thu 5 Nov", title:"Fly home", plan:"Breakfast, pack up, final swim/shopping if time allows.", extras:"Check airline app before leaving hotel."}
+  {date:"2026-10-24", label:"Sat 24 Oct", title:"Arrival + Coco Key / I-Drive", plan:"Hotel check-in, food nearby and an easy first evening.", extras:"No park ticket needed."},
+  {date:"2026-10-25", label:"Sun 25 Oct", title:"Costume shopping + easy I-Drive day 🎃", plan:"Shop for Halloween costumes first thing, then groceries, pool time and an easy evening.", extras:"Try Walmart / Target first for value, Spirit Halloween for the biggest choice, and Five Below for accessories."},
+  {date:"2026-10-26", label:"Mon 26 Oct", title:"Animal Kingdom 🦒", plan:"First Disney ticket day. Early start, Safari, shows, animal trails and Pandora.", extras:"Disney 3-Day Base Ticket window: 26–30 Oct."},
+  {date:"2026-10-27", label:"Tue 27 Oct", title:"Hollywood Studios 🎬", plan:"Toy Story, Mickey & Minnie, Star Wars and shows.", extras:"Second Disney ticket day. Food idea: Sci-Fi Dine-In."},
+  {date:"2026-10-28", label:"Wed 28 Oct", title:"Easy day / pool / Disney Springs", plan:"Sleep in, pool time, shopping or Disney Springs. Keep the pace light before the Halloween party.", extras:"No park ticket needed."},
+  {date:"2026-10-29", label:"Thu 29 Oct", title:"Mickey's Not-So-Scary Halloween Party 🎃", plan:"Keep the morning easy, get into costume and aim to arrive before 4pm entry. Save energy for Boo-to-You later.", extras:"Separate Halloween Party ticket — does not use a Disney Base Ticket day."},
+  {date:"2026-10-30", label:"Fri 30 Oct", title:"Magic Kingdom 🏰", plan:"Third and final Disney Base Ticket day. Take this as the normal Magic Kingdom day after enjoying the party atmosphere the night before.", extras:"Final day inside the 26–30 Oct Disney ticket window."},
+  {date:"2026-10-31", label:"Sat 31 Oct", title:"Old Town Kissimmee Halloween 👻", plan:"Easy daytime at Coco Key, then head to Old Town for the free Halloween event in the evening.", extras:"Trick-or-treat / costume atmosphere without another park ticket."},
+  {date:"2026-11-01", label:"Sun 1 Nov", title:"Islands of Adventure 🎢", plan:"Start the Universal 3-Day Park-to-Park ticket. Hogsmeade, Jurassic Park and family-friendly attractions.", extras:"Universal ticket window: 1–5 Nov. Park-to-Park and Hogwarts Express included."},
+  {date:"2026-11-02", label:"Mon 2 Nov", title:"Kennedy Space Center 🚀", plan:"Full day. Aim for opening and prioritise Atlantis, the bus tour and Saturn V.", extras:"A different pace between Universal days."},
+  {date:"2026-11-03", label:"Tue 3 Nov", title:"Universal Studios Florida 🎬", plan:"Diagon Alley, Minions, Transformers and other family favourites. Use Park-to-Park if you want the Hogwarts Express.", extras:"Second Universal ticket day."},
+  {date:"2026-11-04", label:"Wed 4 Nov", title:"Epic Universe 🌌", plan:"Full day. Arrive early and start with the area that matters most — Nintendo, How to Train Your Dragon, Ministry of Magic or Dark Universe.", extras:"Third Universal ticket day. Epic Universe may reach capacity on select days, so make this an early-arrival day."},
+  {date:"2026-11-05", label:"Thu 5 Nov", title:"Flexible / shopping / favourite area", plan:"No fixed park commitment. Use this for Disney Springs, I-Drive, outlets, pool time or anything you missed.", extras:"Universal ticket remains within its 1–5 Nov validity window, but the 3 admission days are planned for 1, 3 and 4 Nov."},
+  {date:"2026-11-06", label:"Fri 6 Nov", title:"Final full day 🌴", plan:"Keep this open for favourites, shopping, swimming, packing and a nice final dinner.", extras:"A deliberately flexible final day."},
+  {date:"2026-11-07", label:"Sat 7 Nov", title:"Fly home ✈️", plan:"Breakfast, pack up and head to the airport with plenty of time.", extras:"Check the airline app and baggage allowance before leaving Coco Key."}
 ];
 
 const tickets = [
-  {title:"Disney World", icon:"🏰", url:"https://disneyworld.disney.go.com/", note:"Open My Disney Experience for live tickets, plans and Lightning Lane."},
-  {title:"Halloween Party", icon:"🎃", url:"https://disneyworld.disney.go.com/events-tours/mickeys-not-so-scary-halloween-party/", note:"29 Oct 2026. Keep official admission in Disney account."},
-  {title:"Universal Orlando", icon:"🎢", url:"https://www.universalorlando.com/", note:"Universal Studios, Islands and Epic Universe."},
-  {title:"Kennedy Space Center", icon:"🚀", url:"https://www.kennedyspacecenter.com/", note:"Keep KSC PDF / booking confirmation in your secure files."},
+  {title:"Disney 3-Day Base Ticket", icon:"🏰", url:"https://disneyworld.disney.go.com/", note:"Selected plan: 3 park days within 26–30 Oct 2026 — Animal Kingdom, Hollywood Studios and Magic Kingdom. One park per day; no Park Hopper."},
+  {title:"Mickey's Not-So-Scary Halloween Party", icon:"🎃", url:"https://disneyworld.disney.go.com/events-tours/magic-kingdom/mickeys-not-so-scary-halloween-party/", note:"29 Oct 2026. Separate party admission; aim for 4pm entry and keep the morning easy."},
+  {title:"Universal 3-Day Park-to-Park", icon:"🎢", url:"https://www.universalorlando.com/", note:"Selected plan: valid within 1–5 Nov 2026. Covers Universal Studios Florida, Islands of Adventure and Epic Universe; Park-to-Park access and Hogwarts Express included."},
+  {title:"Kennedy Space Center", icon:"🚀", url:"https://www.kennedyspacecenter.com/", note:"Planned for 2 Nov. Keep admission and transport details together once booked."},
   {title:"Coco Key Hotel", icon:"🏨", url:"https://www.google.com/maps/search/?api=1&query=Coco+Key+Hotel+Orlando", note:"Quick directions back to the hotel."},
-  {title:"Flights", icon:"✈️", url:"https://www.google.com/travel/flights", note:"Put airline app and booking reference in notes."}
+  {title:"Old Town Kissimmee", icon:"👻", url:"https://www.google.com/maps/search/?api=1&query=Old+Town+Kissimmee+Florida", note:"Halloween evening plan for 31 Oct. Rideshare is the easiest option from Coco Key."},
+  {title:"Disney Springs", icon:"🛍️", url:"https://www.google.com/maps/search/?api=1&query=Disney+Springs+Orlando", note:"Free-entry Disney shopping and dining area — useful for the easy day or final flexible days."},
+  {title:"Costume shopping", icon:"🧙", url:"https://www.google.com/maps/search/?api=1&query=Halloween+costume+shops+near+International+Drive+Orlando", note:"25 Oct priority: Walmart / Target for value, Spirit Halloween for choice, Five Below for inexpensive accessories."},
+  {title:"Flights", icon:"✈️", url:"https://www.google.com/travel/flights", note:"Keep the airline app, booking reference and checked-bag details handy."}
 ];
 
 const checklists = {
@@ -33,10 +38,10 @@ const checklists = {
       "Check travel insurance and save policy details",
       "Confirm flights, seats and checked baggage",
       "Save Coco Key hotel confirmation",
-      "Link Disney tickets in My Disney Experience",
-      "Link Universal tickets in Universal app",
+      "Link Disney 3-Day Base Tickets in My Disney Experience",
+      "Link Universal 3-Day Park-to-Park tickets in the Universal app",
       "Save Kennedy Space Center confirmation",
-      "Confirm Halloween Party ticket in Disney account",
+      "Confirm 29 Oct Halloween Party tickets in Disney account",
       "Book priority restaurant reservations",
       "Confirm airport transfer / car hire plans",
       "Download Disney and Universal apps",
@@ -49,6 +54,7 @@ const checklists = {
       "Pack comfortable broken-in shoes",
       "Prepare blister / first-aid kit",
       "Save secure copies of key documents",
+      "Confirm Kennedy Space Center admission / transport",
       "Check Kennedy launch schedule",
       "Check Florida weather before departure",
       "Leave spare luggage room for souvenirs"
@@ -75,7 +81,6 @@ const checklists = {
 const food = [
   {title:"Sci-Fi Dine-In Theater", place:"Hollywood Studios", note:"Top themed-family pick. Great mid-day air-conditioned break."},
   {title:"Tusker House", place:"Animal Kingdom", note:"Character meal option. A late breakfast can double as lunch."},
-  {title:"Space 220", place:"EPCOT", note:"Very memorable space theme; experience is the main attraction."},
   {title:"Toothsome Chocolate Emporium", place:"Universal CityWalk", note:"Fun post-park dinner with spectacular desserts."},
   {title:"Chef Art Smith's Homecomin'", place:"Disney Springs", note:"Strong Southern comfort-food choice."},
   {title:"T-REX Cafe", place:"Disney Springs", note:"Pure dinosaur spectacle for a child."},
@@ -199,7 +204,7 @@ qs("generalNotes").value=localStorage.getItem("generalNotes")||"";
 qs("saveNotes").addEventListener("click",()=>{localStorage.setItem("generalNotes",qs("generalNotes").value);qs("notesSaved").textContent="Saved on this device ✓"});
 
 function updateToday(){
-  const now=new Date(); const target=new Date("2026-10-24T00:00:00"); const end=new Date("2026-11-05T23:59:59");
+  const now=new Date(); const target=new Date("2026-10-24T00:00:00"); const end=new Date("2026-11-07T23:59:59");
   const diff=target-now;
   if(diff>0) qs("countdown").textContent=`${Math.ceil(diff/86400000)} days to go ✈️`;
   else if(now<=end) qs("countdown").textContent="We're in Orlando! 🌴";
