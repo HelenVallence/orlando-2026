@@ -12,9 +12,7 @@ const itinerary = [
   {date:"2026-11-02", label:"Mon 2 Nov", title:"Kennedy Space Center 🚀", plan:"Full day. Aim for opening and prioritise Atlantis, the bus tour and Saturn V.", extras:"A different pace between Universal days."},
   {date:"2026-11-03", label:"Tue 3 Nov", title:"Universal Studios Florida 🎬", plan:"Diagon Alley, Minions, Transformers and other family favourites. Use Park-to-Park if you want the Hogwarts Express.", extras:"Second Universal ticket day."},
   {date:"2026-11-04", label:"Wed 4 Nov", title:"Epic Universe 🌌", plan:"Full day. Arrive early and start with the area that matters most — Nintendo, How to Train Your Dragon, Ministry of Magic or Dark Universe.", extras:"Third Universal ticket day. Epic Universe may reach capacity on select days, so make this an early-arrival day."},
-  {date:"2026-11-05", label:"Thu 5 Nov", title:"Flexible / shopping / favourite area", plan:"No fixed park commitment. Use this for Disney Springs, I-Drive, outlets, pool time or anything you missed.", extras:"Universal ticket remains within its 1–5 Nov validity window, but the 3 admission days are planned for 1, 3 and 4 Nov."},
-  {date:"2026-11-06", label:"Fri 6 Nov", title:"Final full day 🌴", plan:"Keep this open for favourites, shopping, swimming, packing and a nice final dinner.", extras:"A deliberately flexible final day."},
-  {date:"2026-11-07", label:"Sat 7 Nov", title:"Fly home ✈️", plan:"Breakfast, pack up and head to the airport with plenty of time.", extras:"Check the airline app and baggage allowance before leaving Coco Key."}
+  {date:"2026-11-05", label:"Thu 5 Nov", title:"Fly home ✈️", plan:"Breakfast, pack up and head to the airport with plenty of time.", extras:"Check the airline app and baggage allowance before leaving Coco Key."}
 ];
 
 const tickets = [
@@ -204,7 +202,7 @@ qs("generalNotes").value=localStorage.getItem("generalNotes")||"";
 qs("saveNotes").addEventListener("click",()=>{localStorage.setItem("generalNotes",qs("generalNotes").value);qs("notesSaved").textContent="Saved on this device ✓"});
 
 function updateToday(){
-  const now=new Date(); const target=new Date("2026-10-24T00:00:00"); const end=new Date("2026-11-07T23:59:59");
+  const now=new Date(); const target=new Date("2026-10-24T00:00:00"); const end=new Date("2026-11-05T23:59:59");
   const diff=target-now;
   if(diff>0) qs("countdown").textContent=`${Math.ceil(diff/86400000)} days to go ✈️`;
   else if(now<=end) qs("countdown").textContent="We're in Orlando! 🌴";
