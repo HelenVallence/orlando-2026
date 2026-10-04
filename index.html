@@ -28,6 +28,7 @@
         <div id="todayExtras" class="todayextras"></div>
         <div class="actions">
           <button class="btn" data-jump="trip">View itinerary</button>
+          <button class="btn secondary" data-jump="flights">Flights ✈️</button>
           <a class="btn secondary" href="https://www.google.com/maps" target="_blank" rel="noopener">Open Maps</a>
           <a class="btn secondary" href="https://weather.com/weather/today/l/Orlando+FL" target="_blank" rel="noopener">Weather ☀️</a>
         </div>
@@ -67,6 +68,67 @@
       <h2>Day-by-day plan 📅</h2>
       <p class="muted">Tap any day to add bookings, times and notes.</p>
       <div id="itinerary"></div>
+    </section>
+
+    <section id="flights" class="panel">
+      <h2>Flights ✈️</h2>
+      <p class="muted">All times shown are local to the departure or arrival airport.</p>
+
+      <div class="card feature">
+        <span class="tag">OUTBOUND · SAT 24 OCT</span>
+        <h3>Dublin → Washington Dulles → Orlando</h3>
+        <div class="flightlegs">
+          <div class="flightleg">
+            <div class="flighttop"><strong>UA311</strong><span>United · Boeing 757-200</span></div>
+            <div class="flighttimes"><strong>DUB 08:50</strong><span>→</span><strong>IAD 11:50</strong></div>
+            <div class="muted">Duration 8h · Seats 30A, 30B, 30C</div>
+          </div>
+          <div class="connection">3h 57m connection at Washington Dulles</div>
+          <div class="flightleg">
+            <div class="flighttop"><strong>UA2861</strong><span>United · Boeing 737-900</span></div>
+            <div class="flighttimes"><strong>IAD 15:47</strong><span>→</span><strong>MCO 18:15</strong></div>
+            <div class="muted">Duration 2h 28m · Seats 37F, 37D, 37E</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card feature">
+        <span class="tag">RETURN · THU 5 NOV</span>
+        <h3>Orlando → Newark → Dublin</h3>
+        <div class="flightlegs">
+          <div class="flightleg">
+            <div class="flighttop"><strong>UA2629</strong><span>United · Boeing 737-900</span></div>
+            <div class="flighttimes"><strong>MCO 16:10</strong><span>→</span><strong>EWR 19:00</strong></div>
+            <div class="muted">Duration 2h 50m · Seats 30C, 30A, 30B</div>
+          </div>
+          <div class="connection warningline">1h 05m connection at Newark — keep an eye on the connection time</div>
+          <div class="flightleg">
+            <div class="flighttop"><strong>UA23</strong><span>United · Boeing 777-200</span></div>
+            <div class="flighttimes"><strong>EWR 20:05</strong><span>→</span><strong>DUB 07:30</strong></div>
+            <div class="muted">Arrives Friday 6 Nov · Duration 6h 25m · Seats 53F, 53D, 53E</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card warning">
+        <strong>Travel-day reminder:</strong> check the United app for live gate, delay and connection information before leaving for the airport.
+        <div class="actions">
+          <a class="btn" href="https://www.united.com/en/us/flightstatus" target="_blank" rel="noopener">United flight status</a>
+          <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Orlando+International+Airport" target="_blank" rel="noopener">MCO directions</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="edittrip" class="panel">
+      <h2>Edit trip plan ✏️</h2>
+      <div class="card warning">
+        <strong>Easy edits:</strong> change a day title, plan or extra note here and tap <em>Save this day</em>. Changes are stored on this device, so you do not need to edit GitHub for small itinerary swaps.
+      </div>
+      <div id="tripEditor"></div>
+      <div class="card">
+        <button class="btn danger small" id="resetItinerary">Reset itinerary to GitHub version</button>
+        <p class="saved" id="editTripSaved"></p>
+      </div>
     </section>
 
     <section id="tickets" class="panel">
@@ -114,7 +176,7 @@ Flight booking ref: XXXXXX"></textarea>
       <div class="card">
         <h3>Our restaurant bookings</h3>
         <textarea id="foodNotes" rows="9" class="input" placeholder="Example:
-27 Oct — Sci-Fi Dine-In — 1:20pm — confirmation...
+27 Oct — EPCOT restaurant — time — confirmation...
 26 Oct — Tusker House — 10:20am"></textarea>
         <button class="btn small" id="saveFoodNotes">Save reservations</button>
         <p class="saved" id="foodSaved"></p>
@@ -188,6 +250,8 @@ Flight booking ref: XXXXXX"></textarea>
   </nav>
 
   <div id="moreMenu" class="moremenu">
+    <button data-target="flights">✈️ Flights</button>
+    <button data-target="edittrip">✏️ Edit trip</button>
     <button data-target="money">💵 Spending</button>
     <button data-target="nasa">🚀 NASA</button>
     <button data-target="notes">📝 Notes</button>

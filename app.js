@@ -1,9 +1,9 @@
 
-const itinerary = [
+const defaultItinerary = [
   {date:"2026-10-24", label:"Sat 24 Oct", title:"Arrival + Coco Key / I-Drive", plan:"Hotel check-in, food nearby and an easy first evening.", extras:"No park ticket needed."},
   {date:"2026-10-25", label:"Sun 25 Oct", title:"Costume shopping + easy I-Drive day 🎃", plan:"Shop for Halloween costumes first thing, then groceries, pool time and an easy evening.", extras:"Try Walmart / Target first for value, Spirit Halloween for the biggest choice, and Five Below for accessories."},
   {date:"2026-10-26", label:"Mon 26 Oct", title:"Animal Kingdom 🦒", plan:"First Disney ticket day. Early start, Safari, shows, animal trails and Pandora.", extras:"Disney 3-Day Base Ticket window: 26–30 Oct."},
-  {date:"2026-10-27", label:"Tue 27 Oct", title:"Hollywood Studios 🎬", plan:"Toy Story, Mickey & Minnie, Star Wars and shows.", extras:"Second Disney ticket day. Food idea: Sci-Fi Dine-In."},
+  {date:"2026-10-27", label:"Tue 27 Oct", title:"EPCOT 🌐", plan:"World Showcase, Frozen, Ratatouille, Spaceship Earth and a more relaxed Disney day.", extras:"Second Disney ticket day. Food & Wine Festival is running during the trip."},
   {date:"2026-10-28", label:"Wed 28 Oct", title:"Easy day / pool / Disney Springs", plan:"Sleep in, pool time, shopping or Disney Springs. Keep the pace light before the Halloween party.", extras:"No park ticket needed."},
   {date:"2026-10-29", label:"Thu 29 Oct", title:"Mickey's Not-So-Scary Halloween Party 🎃", plan:"Keep the morning easy, get into costume and aim to arrive before 4pm entry. Save energy for Boo-to-You later.", extras:"Separate Halloween Party ticket — does not use a Disney Base Ticket day."},
   {date:"2026-10-30", label:"Fri 30 Oct", title:"Magic Kingdom 🏰", plan:"Third and final Disney Base Ticket day. Take this as the normal Magic Kingdom day after enjoying the party atmosphere the night before.", extras:"Final day inside the 26–30 Oct Disney ticket window."},
@@ -16,7 +16,7 @@ const itinerary = [
 ];
 
 const tickets = [
-  {title:"Disney 3-Day Base Ticket", icon:"🏰", url:"https://disneyworld.disney.go.com/", note:"Selected plan: 3 park days within 26–30 Oct 2026 — Animal Kingdom, Hollywood Studios and Magic Kingdom. One park per day; no Park Hopper."},
+  {title:"Disney 3-Day Base Ticket", icon:"🏰", url:"https://disneyworld.disney.go.com/", note:"Selected plan: 3 park days within 26–30 Oct 2026 — Animal Kingdom, EPCOT and Magic Kingdom. One park per day; no Park Hopper."},
   {title:"Mickey's Not-So-Scary Halloween Party", icon:"🎃", url:"https://disneyworld.disney.go.com/events-tours/magic-kingdom/mickeys-not-so-scary-halloween-party/", note:"29 Oct 2026. Separate party admission; aim for 4pm entry and keep the morning easy."},
   {title:"Universal 3-Day Park-to-Park", icon:"🎢", url:"https://www.universalorlando.com/", note:"Selected plan: valid within 1–5 Nov 2026. Covers Universal Studios Florida, Islands of Adventure and Epic Universe; Park-to-Park access and Hogwarts Express included."},
   {title:"Kennedy Space Center", icon:"🚀", url:"https://www.kennedyspacecenter.com/", note:"Planned for 2 Nov. Keep admission and transport details together once booked."},
@@ -77,7 +77,7 @@ const checklists = {
 };
 
 const food = [
-  {title:"Sci-Fi Dine-In Theater", place:"Hollywood Studios", note:"Top themed-family pick. Great mid-day air-conditioned break."},
+  {title:"Via Napoli Ristorante e Pizzeria", place:"EPCOT", note:"Family-friendly pizza in the Italy pavilion and a handy sit-down break during World Showcase."},
   {title:"Tusker House", place:"Animal Kingdom", note:"Character meal option. A late breakfast can double as lunch."},
   {title:"Toothsome Chocolate Emporium", place:"Universal CityWalk", note:"Fun post-park dinner with spectacular desserts."},
   {title:"Chef Art Smith's Homecomin'", place:"Disney Springs", note:"Strong Southern comfort-food choice."},
@@ -89,6 +89,22 @@ const food = [
 const qs=id=>document.getElementById(id);
 const getJSON=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
 const setJSON=(key,val)=>localStorage.setItem(key,JSON.stringify(val));
+
+let itinerary = getSavedItinerary();
+
+function getSavedItinerary(){
+  try{
+    const saved=JSON.parse(localStorage.getItem("customItinerary"));
+    if(Array.isArray(saved) && saved.length===defaultItinerary.length){
+      return defaultItinerary.map((d,i)=>({...d,...saved[i],date:d.date,label:d.label}));
+    }
+  }catch{}
+  return defaultItinerary.map(d=>({...d}));
+}
+
+function saveItinerary(){
+  localStorage.setItem("customItinerary",JSON.stringify(itinerary.map(({title,plan,extras})=>({title,plan,extras}))));
+}
 
 function showPanel(id){
   document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===id));
@@ -123,6 +139,35 @@ function renderItinerary(){
     });
     wrap.appendChild(el);
   });
+}
+
+function renderTripEditor(){
+  const wrap=qs("tripEditor");
+  if(!wrap) return;
+  wrap.innerHTML="";
+  itinerary.forEach((d,i)=>{
+    const el=document.createElement("div"); el.className="card editorcard";
+    el.innerHTML=`
+      <div class="daydate">${d.label}</div>
+      <label class="editlabel">Day title<input class="input editTitle" value="${escapeHtml(d.title)}"></label>
+      <label class="editlabel">Plan<textarea class="input editPlan" rows="3">${escapeHtml(d.plan)}</textarea></label>
+      <label class="editlabel">Extra note<textarea class="input editExtras" rows="2">${escapeHtml(d.extras)}</textarea></label>
+      <button class="btn small saveEdit">Save this day</button>
+      <span class="saved editSaved"></span>`;
+    el.querySelector(".saveEdit").addEventListener("click",()=>{
+      itinerary[i].title=el.querySelector(".editTitle").value.trim() || defaultItinerary[i].title;
+      itinerary[i].plan=el.querySelector(".editPlan").value.trim();
+      itinerary[i].extras=el.querySelector(".editExtras").value.trim();
+      saveItinerary();
+      renderItinerary(); updateToday();
+      el.querySelector(".editSaved").textContent="Saved on this device ✓";
+    });
+    wrap.appendChild(el);
+  });
+}
+
+function escapeHtml(value){
+  return String(value).replace(/[&<>"]/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
 }
 
 function renderTickets(){
@@ -216,7 +261,16 @@ function updateToday(){
   }
 }
 
-renderItinerary(); renderTickets(); renderChecklist("pre"); renderFood(); renderSpending(); updateToday();
+qs("resetItinerary")?.addEventListener("click",()=>{
+  if(confirm("Reset the itinerary to the GitHub version? Your day notes will stay saved.")){
+    localStorage.removeItem("customItinerary");
+    itinerary=defaultItinerary.map(d=>({...d}));
+    renderTripEditor(); renderItinerary(); updateToday();
+    qs("editTripSaved").textContent="Reset to GitHub version ✓";
+  }
+});
+
+renderItinerary(); renderTripEditor(); renderTickets(); renderChecklist("pre"); renderFood(); renderSpending(); updateToday();
 
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js"));

@@ -87,8 +87,24 @@ textarea.input{resize:vertical}.muted{color:var(--muted)}.saved{color:var(--bran
   text-align:left;border:0;background:#fff;padding:12px 18px;font:inherit;font-weight:800;border-radius:12px;cursor:pointer
 }
 .moremenu button:hover{background:#eef7f6}
+
+.flightlegs{display:grid;gap:12px;margin-top:14px}
+.flightleg{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fbfefd}
+.flighttop{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:10px}
+.flighttop span{color:var(--muted);font-size:.85rem;text-align:right}
+.flighttimes{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:1.12rem;margin-bottom:6px}
+.flighttimes span{color:var(--muted)}
+.connection{text-align:center;color:var(--muted);font-weight:800;padding:2px 8px}
+.warningline{color:#8a4b00}
+
 @media(max-width:700px){
   .hero{align-items:flex-start;flex-direction:column}.countdown{align-self:stretch}
   .grid.two{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}
   main{padding:14px}.moneyform{grid-template-columns:1fr 1fr}.moneyform #spendItem{grid-column:1/-1}
+  .flighttop{align-items:flex-start;flex-direction:column}.flighttop span{text-align:left}.flighttimes{font-size:1rem}
 }
+
+.editorcard{cursor:default}
+.editlabel{display:grid;gap:6px;margin-top:12px;font-weight:800}
+.editlabel .input{font-weight:400}
+.editSaved{margin-left:10px}
