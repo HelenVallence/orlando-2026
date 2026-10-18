@@ -1,31 +1,9 @@
 
-const defaultItinerary = [
-  {date:"2026-10-24", label:"Sat 24 Oct", title:"Arrival + Coco Key / I-Drive", plan:"Hotel check-in, food nearby and an easy first evening.", extras:"No park ticket needed."},
-  {date:"2026-10-25", label:"Sun 25 Oct", title:"Costume shopping + easy I-Drive day 🎃", plan:"Shop for Halloween costumes first thing, then groceries, pool time and an easy evening.", extras:"Try Walmart / Target first for value, Spirit Halloween for the biggest choice, and Five Below for accessories."},
-  {date:"2026-10-26", label:"Mon 26 Oct", title:"Animal Kingdom 🦒", plan:"First Disney ticket day. Early start, Safari, shows, animal trails and Pandora.", extras:"Disney 3-Day Base Ticket window: 26–30 Oct."},
-  {date:"2026-10-27", label:"Tue 27 Oct", title:"EPCOT 🌐", plan:"World Showcase, Frozen, Ratatouille, Spaceship Earth and a more relaxed Disney day.", extras:"Second Disney ticket day. Food & Wine Festival is running during the trip."},
-  {date:"2026-10-28", label:"Wed 28 Oct", title:"Easy day / pool / Disney Springs", plan:"Sleep in, pool time, shopping or Disney Springs. Keep the pace light before the Halloween party.", extras:"No park ticket needed."},
-  {date:"2026-10-29", label:"Thu 29 Oct", title:"Mickey's Not-So-Scary Halloween Party 🎃", plan:"Keep the morning easy, get into costume and aim to arrive before 4pm entry. Save energy for Boo-to-You later.", extras:"Separate Halloween Party ticket — does not use a Disney Base Ticket day."},
-  {date:"2026-10-30", label:"Fri 30 Oct", title:"Magic Kingdom 🏰", plan:"Third and final Disney Base Ticket day. Take this as the normal Magic Kingdom day after enjoying the party atmosphere the night before.", extras:"Final day inside the 26–30 Oct Disney ticket window."},
-  {date:"2026-10-31", label:"Sat 31 Oct", title:"Old Town Kissimmee Halloween 👻", plan:"Easy daytime at Coco Key, then head to Old Town for the free Halloween event in the evening.", extras:"Trick-or-treat / costume atmosphere without another park ticket."},
-  {date:"2026-11-01", label:"Sun 1 Nov", title:"Islands of Adventure 🎢", plan:"Start the Universal 3-Day Park-to-Park ticket. Hogsmeade, Jurassic Park and family-friendly attractions.", extras:"Universal ticket window: 1–5 Nov. Park-to-Park and Hogwarts Express included."},
-  {date:"2026-11-02", label:"Mon 2 Nov", title:"Kennedy Space Center 🚀", plan:"Full day. Aim for opening and prioritise Atlantis, the bus tour and Saturn V.", extras:"A different pace between Universal days."},
-  {date:"2026-11-03", label:"Tue 3 Nov", title:"Universal Studios Florida 🎬", plan:"Diagon Alley, Minions, Transformers and other family favourites. Use Park-to-Park if you want the Hogwarts Express.", extras:"Second Universal ticket day."},
-  {date:"2026-11-04", label:"Wed 4 Nov", title:"Epic Universe 🌌", plan:"Full day. Arrive early and start with the area that matters most — Nintendo, How to Train Your Dragon, Ministry of Magic or Dark Universe.", extras:"Third Universal ticket day. Epic Universe may reach capacity on select days, so make this an early-arrival day."},
-  {date:"2026-11-05", label:"Thu 5 Nov", title:"Fly home ✈️", plan:"Breakfast, pack up and head to the airport with plenty of time.", extras:"Check the airline app and baggage allowance before leaving Coco Key."}
-];
-
-const tickets = [
-  {title:"Disney 3-Day Base Ticket", icon:"🏰", url:"https://disneyworld.disney.go.com/", note:"Selected plan: 3 park days within 26–30 Oct 2026 — Animal Kingdom, EPCOT and Magic Kingdom. One park per day; no Park Hopper."},
-  {title:"Mickey's Not-So-Scary Halloween Party", icon:"🎃", url:"https://disneyworld.disney.go.com/events-tours/magic-kingdom/mickeys-not-so-scary-halloween-party/", note:"29 Oct 2026. Separate party admission; aim for 4pm entry and keep the morning easy."},
-  {title:"Universal 3-Day Park-to-Park", icon:"🎢", url:"https://www.universalorlando.com/", note:"Selected plan: valid within 1–5 Nov 2026. Covers Universal Studios Florida, Islands of Adventure and Epic Universe; Park-to-Park access and Hogwarts Express included."},
-  {title:"Kennedy Space Center", icon:"🚀", url:"https://www.kennedyspacecenter.com/", note:"Planned for 2 Nov. Keep admission and transport details together once booked."},
-  {title:"Coco Key Hotel", icon:"🏨", url:"https://www.google.com/maps/search/?api=1&query=Coco+Key+Hotel+Orlando", note:"Quick directions back to the hotel."},
-  {title:"Old Town Kissimmee", icon:"👻", url:"https://www.google.com/maps/search/?api=1&query=Old+Town+Kissimmee+Florida", note:"Halloween evening plan for 31 Oct. Rideshare is the easiest option from Coco Key."},
-  {title:"Disney Springs", icon:"🛍️", url:"https://www.google.com/maps/search/?api=1&query=Disney+Springs+Orlando", note:"Free-entry Disney shopping and dining area — useful for the easy day or final flexible days."},
-  {title:"Costume shopping", icon:"🧙", url:"https://www.google.com/maps/search/?api=1&query=Halloween+costume+shops+near+International+Drive+Orlando", note:"25 Oct priority: Walmart / Target for value, Spirit Halloween for choice, Five Below for inexpensive accessories."},
-  {title:"Flights", icon:"✈️", url:"https://www.google.com/travel/flights", note:"Keep the airline app, booking reference and checked-bag details handy."}
-];
+const tripData = window.TRIP_DATA || {};
+const tripMeta = tripData.trip || {startDate:"2026-10-24",endDate:"2026-11-05",displayDates:"24 October – 5 November 2026",nights:12,name:"Orlando 2026 🌴"};
+const defaultItinerary = Array.isArray(tripData.itinerary) ? tripData.itinerary : [];
+const tickets = Array.isArray(tripData.tickets) ? tripData.tickets : [];
+const flights = Array.isArray(tripData.flights) ? tripData.flights : [];
 
 const checklists = {
   pre: {
@@ -117,6 +95,33 @@ document.querySelectorAll("[data-target]").forEach(b=>{
 });
 document.querySelectorAll("[data-jump]").forEach(b=>b.addEventListener("click",()=>showPanel(b.dataset.jump)));
 qs("moreBtn").addEventListener("click",()=>qs("moreMenu").classList.toggle("open"));
+
+function renderTripMeta(){
+  if(qs("tripName")) qs("tripName").textContent=tripMeta.name || "Orlando 2026 🌴";
+  if(qs("tripDates")) qs("tripDates").textContent=tripMeta.displayDates || `${tripMeta.startDate} – ${tripMeta.endDate}`;
+  if(qs("tripNights")) qs("tripNights").textContent=tripMeta.nights ?? "";
+}
+
+function renderFlights(){
+  const wrap=qs("flightCards");
+  if(!wrap) return;
+  wrap.innerHTML="";
+  flights.forEach(journey=>{
+    const card=document.createElement("div"); card.className="card feature";
+    const legs=(journey.legs||[]).map(leg=>{
+      if(leg.connection){
+        return `<div class="connection${leg.warning ? " warningline" : ""}">${escapeHtml(leg.connection)}</div>`;
+      }
+      return `<div class="flightleg">
+        <div class="flighttop"><strong>${escapeHtml(leg.flight)}</strong><span>${escapeHtml(leg.airline)} · ${escapeHtml(leg.aircraft)}</span></div>
+        <div class="flighttimes"><strong>${escapeHtml(leg.from)} ${escapeHtml(leg.depart)}</strong><span>→</span><strong>${escapeHtml(leg.to)} ${escapeHtml(leg.arrive)}</strong></div>
+        <div class="muted">${escapeHtml(leg.detail||"")}</div>
+      </div>`;
+    }).join("");
+    card.innerHTML=`<span class="tag">${escapeHtml(journey.tag||"")}</span><h3>${escapeHtml(journey.route||"")}</h3><div class="flightlegs">${legs}</div>`;
+    wrap.appendChild(card);
+  });
+}
 
 function renderItinerary(){
   const wrap=qs("itinerary"); wrap.innerHTML="";
@@ -247,7 +252,7 @@ qs("generalNotes").value=localStorage.getItem("generalNotes")||"";
 qs("saveNotes").addEventListener("click",()=>{localStorage.setItem("generalNotes",qs("generalNotes").value);qs("notesSaved").textContent="Saved on this device ✓"});
 
 function updateToday(){
-  const now=new Date(); const target=new Date("2026-10-24T00:00:00"); const end=new Date("2026-11-05T23:59:59");
+  const now=new Date(); const target=new Date(`${tripMeta.startDate}T00:00:00`); const end=new Date(`${tripMeta.endDate}T23:59:59`);
   const diff=target-now;
   if(diff>0) qs("countdown").textContent=`${Math.ceil(diff/86400000)} days to go ✈️`;
   else if(now<=end) qs("countdown").textContent="We're in Orlando! 🌴";
@@ -270,7 +275,7 @@ qs("resetItinerary")?.addEventListener("click",()=>{
   }
 });
 
-renderItinerary(); renderTripEditor(); renderTickets(); renderChecklist("pre"); renderFood(); renderSpending(); updateToday();
+renderTripMeta(); renderFlights(); renderItinerary(); renderTripEditor(); renderTickets(); renderChecklist("pre"); renderFood(); renderSpending(); updateToday();
 
 if("serviceWorker" in navigator){
   window.addEventListener("load",()=>navigator.serviceWorker.register("service-worker.js"));
